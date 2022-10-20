@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from flask import request
 from flask import render_template
 
 app = Flask(__name__)
@@ -17,6 +18,11 @@ def lobby():
 def exit():
     return render_template("exit.html")
     
-@app.route("/greet", methods=["GET"])
+@app.route("/greet", methods=["GET", "POST"])
 def greet():
-    return "<p>Hello, weary traveler!</p>"
+    name = request.form['Name']
+    if(name == None or name == ''):
+        return "<p>Hello, anonymous weary traveler!</p>"
+    else:
+        greeting = "<p>Hello, " + name + "! Do you need a room?</p>"
+        return greeting

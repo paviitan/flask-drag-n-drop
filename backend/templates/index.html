@@ -4,7 +4,13 @@
 </header>
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
 <body onload="lobbyFunction()">
-<div><button onclick="greetFunction()">Greet</button></div>
+<div>
+	<form id="myForm">
+		<label for="myName">Name:</label>
+		<input id="myName" name="Name"/>
+		<input type="submit" value="Greet" />
+	</form>
+<div>
 <div id="result-container"></div> <!-- Python response goes here -->
 </body>
 </html>

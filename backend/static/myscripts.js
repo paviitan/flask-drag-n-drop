@@ -24,11 +24,16 @@ function lobbyFunction() {
 	xhr.send(null);
 };
 
-function greetFunction() {
+const form = document.getElementById("myForm"); 
+form.addEventListener("submit", (event) => {
+	event.preventDefault();
+	
+	const formData = new FormData(form)
 	var request_url = "/greet"
 	console.log("I am thinking I should say hello")
 	xhr = getXmlHttpRequestObject();
 	xhr.onreadystatechange = dataCallback;
-	xhr.open("GET", base_url+request_url, true);
-	xhr.send(null);
-}
+	xhr.open("POST", base_url+request_url, true);
+	xhr.send(formData);
+
+});
