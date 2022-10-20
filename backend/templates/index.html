@@ -5,9 +5,10 @@
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
 <body onload="lobbyFunction()">
 <div>
-	<form action="{{ url_for('greet') }}" method="post">
-		Name: <input type="text" name="Name"><br>
-		<input type="submit" value="Submit">
+	<form id="myForm">
+		<label for="myName">Name:</label>
+		<input id="myName" name="Name"/>
+		<input type="submit" value="Greet" />
 	</form>
 <div>
 <div id="result-container"></div> <!-- Python response goes here -->

@@ -22,7 +22,7 @@ def exit():
 def greet():
     name = request.form['Name']
     if(name == None or name == ''):
-        return "<p>Hello, weary traveler!</p>"
+        return "<p>Hello, anonymous weary traveler!</p>"
     else:
-        greeting = "<p>Hello, " + name + "!</p>"
+        greeting = "<p>Hello, " + name + "! Do you need a room?</p>"
         return greeting
