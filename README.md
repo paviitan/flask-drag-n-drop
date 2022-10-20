@@ -21,3 +21,4 @@ Run the app:
 
 ## Links
 [Flask quick start](https://flask.palletsprojects.com/en/2.2.x/quickstart/)
+[Flask-CORS](https://flask-cors.readthedocs.io/en/latest/index.html)
