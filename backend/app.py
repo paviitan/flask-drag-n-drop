@@ -31,7 +31,7 @@ def greet():
         greeting = "<p>Hello, " + name + "! Do you need a room?</p>"
         return greeting
         
-@app.route("/upload/", methods=["GET", "POST"])
+@app.route("/upload", methods=["GET", "POST"])
 @cross_origin('*')
 def upload():
     if request.method == 'POST':
