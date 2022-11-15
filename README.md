@@ -23,8 +23,7 @@ Run the python backend app:
 
 `flask --app backend/app run`
 
-Run and open the front end web app:
-`http-server --cors -o`
+Open browser to http://localhost:5000
 
 ## Links
 - [Flask quick start](https://flask.palletsprojects.com/en/2.2.x/quickstart/)
