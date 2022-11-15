@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<title>File upload</title>
+</header>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+<div id=drop_zone_general>
+
+<h1>Drag and drop</h1>
+<p>Drag one or more files to this <i>drop zone</i>.</p>
+<div id="drop_zone">
+</div>
+<div id="result-container"></div> <!-- Python response goes here -->
+</body>
+</html>
+<script src="{{url_for('static', filename='myscripts.js')}}"></script>
+

@@ -27,7 +27,8 @@ Run and open the front end web app:
 `http-server --cors -o`
 
 ## Links
-[Flask quick start](https://flask.palletsprojects.com/en/2.2.x/quickstart/)
-[Flask-CORS](https://flask-cors.readthedocs.io/en/latest/index.html)
-[XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
-[AJAX Getting started](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
+- [Flask quick start](https://flask.palletsprojects.com/en/2.2.x/quickstart/)
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/index.html)
+- [XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+- [Flask file upload](https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/)
+- [AJAX Getting started](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)

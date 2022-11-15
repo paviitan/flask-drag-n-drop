@@ -1,9 +1,13 @@
 from flask import Flask
-from flask_cors import CORS
-from flask import request
+from flask_cors import CORS, cross_origin
+from flask import request 
 from flask import render_template
+from flask import redirect
+from flask import url_for
+import os
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] =  'uploads'
 CORS(app) # CORS allows frontend JavaScript with Python backend
 
 @app.route("/", methods=["GET"])
@@ -26,3 +30,24 @@ def greet():
     else:
         greeting = "<p>Hello, " + name + "! Do you need a room?</p>"
         return greeting
+        
+@app.route("/upload/", methods=["GET", "POST"])
+@cross_origin('*')
+def upload():
+    if request.method == 'POST':
+        print(request.headers)
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return "POST request does not have the file part"
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            # flash('No selected file')
+            return "No selected file? Browser submitted an empty file without a filename"
+        if file:
+            filename = file.filename
+            print(f"{os.path.join(os.path.realpath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], filename)}")
+            file.save(os.path.join(os.path.realpath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], filename))
+            return "File recieved"
+    return render_template("upload.html")
