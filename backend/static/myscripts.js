@@ -56,22 +56,15 @@ try {
 		dropZone.addEventListener('drop', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			var file = e.dataTransfer.files
+			var file = e.dataTransfer.files[0]
 			console.log(file)
-			var form_element = document.createElement("form")
-			var file_element = document.createElement("input")
-			file_element.setAttribute("type", "file")
-			file_element.setAttribute("multiple", "true")
-			file_element.setAttribute("name", "file")
-			file_element.files = file
-			console.log(file_element)
-			form_element.appendChild(file_element)
+			file_upload_form = new FormData()
+			file_upload_form.append('file', file, file.name)
 			var request_url = "/upload"
-			console.log("Droppings")
 			xhr = getXmlHttpRequestObject();
 			xhr.onreadystatechange = dataCallback;
 			xhr.open("POST", base_url+request_url, true);
-			xhr.send(new FormData(form_element));
+			xhr.send(file_upload_form);
 		});
 	}
 }
