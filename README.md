@@ -23,6 +23,7 @@ Open browser to http://localhost:5000
 
 ## Links
 - [Flask quick start](https://flask.palletsprojects.com/en/2.2.x/quickstart/)
+- Flask depends on the [Jinja](https://jinja.palletsprojects.com/) template engine and the [Werkzeug](https://werkzeug.palletsprojects.com/) WSGI toolkit
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/index.html)
 - [XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
 - [Flask file upload](https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/)

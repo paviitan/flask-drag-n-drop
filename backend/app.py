@@ -5,6 +5,8 @@ from flask import render_template
 from flask import redirect
 from flask import url_for
 import os
+from werkzeug.utils import secure_filename
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] =  'uploads'
@@ -46,7 +48,7 @@ def upload():
             # flash('No selected file')
             return "No selected file? Browser submitted an empty file without a filename"
         if file:
-            filename = file.filename
+            filename = secure_filename(file.filename) # Sanitize with Werkzeug utils
             print(f"{os.path.join(os.path.realpath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], filename)}")
             file.save(os.path.join(os.path.realpath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], filename))
             return "File recieved"
