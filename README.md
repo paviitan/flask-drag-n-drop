@@ -15,10 +15,6 @@ Install python requirements:
 
 `pip install requirements.txt`
 
-Install npm requirements:
-
-`npm install`
-
 Run the python backend app:
 
 `flask --app backend/app run`
