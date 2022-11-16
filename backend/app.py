@@ -28,11 +28,11 @@ def greet():
     if(name == None or name == ''):
         return "<p>Hello, anonymous weary traveler!</p>"
     else:
-        greeting = "<p>Hello, " + name + "! Do you need a room?</p>"
+        greeting = "<p>Hello, " + name + "! Do you need a room?</p>" + "<br>" + "<a href=\"/upload\"> Yes, please</a>" + "<br>"
         return greeting
         
 @app.route("/upload", methods=["GET", "POST"])
-@cross_origin('*')
+#@cross_origin('*')  # not needed?
 def upload():
     if request.method == 'POST':
         print(request.headers)
