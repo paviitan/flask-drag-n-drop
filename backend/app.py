@@ -5,11 +5,10 @@ from flask import render_template
 from flask import redirect
 from flask import url_for
 
-from utils import file_handler
-
+from utils import file_handler, UPLOAD_FOLDER
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] =  'uploads'
+app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 CORS(app) # CORS allows frontend JavaScript with Python backend
 
 @app.route("/", methods=["GET"])
@@ -48,5 +47,5 @@ def upload():
             # flash('No selected file')
             return "No selected file? Browser submitted an empty file without a filename"
         if file:
-            return file_handler(file, app.config['UPLOAD_FOLDER'])
+            return file_handler(file)
     return render_template("upload.html")
