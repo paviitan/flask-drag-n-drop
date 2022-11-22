@@ -61,11 +61,11 @@ def handle_pdf(file: FileStorage) -> str:
             save_file_name = str(num).rjust(2,'0') + '-' + image_file_name # Add page number as leading number
         else:
             save_file_name = image_file_name
-        pil_image = page.get_pixmap() # render page as image
-        pil_image.save(path(save_file_name), 'PNG') # PIL image save as .png
+        image: Pixmap = page.get_pixmap() # Render page as Pixmap image
+        image.save(path(save_file_name), 'PNG') # Save as .png with https://pymupdf.readthedocs.io/en/latest/pixmap.html#Pixmap.save
         list_of_image_files.append(save_file_name)
     # Generate HTML return message
-    message = str(num) + " pieces of clothing from luggage " + file.filename  + " are now neatly organisized in your room." + "<br>"
+    message = str(num) + " pieces of clothing from luggage " + file.filename  + " are now neatly organized in your room." + "<br>"
     for file in list_of_image_files:
         # <a href="uploads/filename"> filename </a> <br>
         message += "<a href=\"" + UPLOAD_FOLDER + "/" + file + "\">" + file + "</a>" + "<br>"
