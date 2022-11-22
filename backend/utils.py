@@ -6,6 +6,7 @@ import fitz as pdf # PyMuPDF
 from PIL import Image
 
 UPLOAD_FOLDER = 'uploads'
+RESOLUTION_DPI = 300 # When converting PDF to image. Default 72 gives blurry results.
 
 """
     Try to simplify filepath stuff. You know this would be trivial if you just made this file handler into a class?
@@ -61,8 +62,9 @@ def handle_pdf(file: FileStorage) -> str:
             save_file_name = str(num).rjust(2,'0') + '-' + image_file_name # Add page number as leading number
         else:
             save_file_name = image_file_name
-        image: Pixmap = page.get_pixmap() # Render page as Pixmap image
-        image.save(path(save_file_name), 'PNG') # Save as .png with https://pymupdf.readthedocs.io/en/latest/pixmap.html#Pixmap.save
+        image: Pixmap = page.get_pixmap(dpi=RESOLUTION_DPI) # Render page as Pixmap image
+        print(image)
+        image.pil_save(path(save_file_name), 'PNG') # Save as .png with https://pymupdf.readthedocs.io/en/latest/pixmap.html#Pixmap.save
         list_of_image_files.append(save_file_name)
     # Generate HTML return message
     message = str(num) + " pieces of clothing from luggage " + file.filename  + " are now neatly organized in your room." + "<br>"
