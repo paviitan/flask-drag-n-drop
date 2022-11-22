@@ -52,6 +52,7 @@ def handle_pdf(file: FileStorage) -> str:
     file_as_bytes = file.read()
     document = pdf.open(file.filename,file_as_bytes)
     pages = len(document)
+    list_of_image_files = []
     for num, page in enumerate(document):
         if pages > 99:
             # raise Exception('This file simply has too many pages.')
@@ -62,6 +63,10 @@ def handle_pdf(file: FileStorage) -> str:
             save_file_name = image_file_name
         pil_image = page.get_pixmap() # render page as image
         pil_image.save(path(save_file_name), 'PNG') # PIL image save as .png
-    # TODO: We don't actually serve the contents of upload folder in any way 
-    # "<br><a href=\"" + UPLOAD_FOLDER + "\"> Your Room </a>"
-    return str(num) + " pieces of clothing from luggage " + file.filename  + " are now neatly organisized in your room."
+        list_of_image_files.append(save_file_name)
+    # Generate HTML return message
+    message = str(num) + " pieces of clothing from luggage " + file.filename  + " are now neatly organisized in your room." + "<br>"
+    for file in list_of_image_files:
+        # <a href="uploads/filename"> filename </a> <br>
+        message += "<a href=\"" + UPLOAD_FOLDER + "/" + file + "\">" + file + "</a>" + "<br>"
+    return message

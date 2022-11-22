@@ -1,11 +1,9 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
-from flask import request 
-from flask import render_template
-from flask import redirect
-from flask import url_for
+from flask import request, render_template, redirect, url_for, send_from_directory
 
 from utils import file_handler, UPLOAD_FOLDER
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
@@ -49,3 +47,7 @@ def upload():
         if file:
             return file_handler(file)
     return render_template("upload.html")
+
+@app.route('/uploads/<name>')
+def download_file(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
