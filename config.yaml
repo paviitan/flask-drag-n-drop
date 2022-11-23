@@ -1,0 +1,2 @@
+UPLOAD_FOLDER: uploads
+RESOLUTION_DPI: 300 # When converting PDF to image. Default 72 gives blurry results.

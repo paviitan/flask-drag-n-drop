@@ -2,11 +2,10 @@ from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import request, render_template, redirect, url_for, send_from_directory
 
-from utils import file_handler, UPLOAD_FOLDER
-
+from utils import file_handler, config
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] =  config['UPLOAD_FOLDER']
 CORS(app) # CORS allows frontend JavaScript with Python backend
 
 @app.route("/", methods=["GET"])

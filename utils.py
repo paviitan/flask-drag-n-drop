@@ -1,18 +1,21 @@
 import os
+import yaml
 from typing import Any
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 import fitz as pdf # PyMuPDF
 from PIL import Image
 
-UPLOAD_FOLDER = 'uploads'
-RESOLUTION_DPI = 300 # When converting PDF to image. Default 72 gives blurry results.
+# Import some stuff from config.yaml
+with open('config.yaml') as f:
+    config = yaml.safe_load(f)
+# print(f"{config}")
 
 """
     Try to simplify filepath stuff. You know this would be trivial if you just made this file handler into a class?
 """
 def path(filename: str) -> str:
-    return os.path.join(os.path.realpath(os.path.dirname(__file__)), UPLOAD_FOLDER, filename)
+    return os.path.join(os.path.realpath(os.path.dirname(__file__)), config['UPLOAD_FOLDER'], filename)
 """
     Save file directly with werkzeug FileStorage.save() Could be improved.
     Documentation says: 
@@ -62,7 +65,7 @@ def handle_pdf(file: FileStorage) -> str:
             save_file_name = str(num).rjust(2,'0') + '-' + image_file_name # Add page number as leading number
         else:
             save_file_name = image_file_name
-        image: Pixmap = page.get_pixmap(dpi=RESOLUTION_DPI) # Render page as Pixmap image
+        image: Pixmap = page.get_pixmap(dpi=config['RESOLUTION_DPI']) # Render page as Pixmap image
         print(image)
         image.pil_save(path(save_file_name), 'PNG') # Save as .png with https://pymupdf.readthedocs.io/en/latest/pixmap.html#Pixmap.save
         list_of_image_files.append(save_file_name)
@@ -70,5 +73,5 @@ def handle_pdf(file: FileStorage) -> str:
     message = str(num) + " pieces of clothing from luggage " + file.filename  + " are now neatly organized in your room." + "<br>"
     for file in list_of_image_files:
         # <a href="uploads/filename"> filename </a> <br>
-        message += "<a href=\"" + UPLOAD_FOLDER + "/" + file + "\">" + file + "</a>" + "<br>"
+        message += "<a href=\"" + config['UPLOAD_FOLDER'] + "/" + file + "\">" + file + "</a>" + "<br>"
     return message
