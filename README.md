@@ -17,7 +17,7 @@ Install python requirements:
 
 Run the python backend app:
 
-`flask --app backend/app run`
+`flask --app app run`
 
 Open browser to http://localhost:5000
 
