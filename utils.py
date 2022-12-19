@@ -15,7 +15,12 @@ with open('config.yaml') as f:
     Try to simplify filepath stuff. You know this would be trivial if you just made this file handler into a class?
 """
 def path(filename: str) -> str:
-    return os.path.join(os.path.realpath(os.path.dirname(__file__)), config['UPLOAD_FOLDER'], filename)
+    destination_folder = os.path.join(os.path.realpath(os.path.dirname(__file__)), config['UPLOAD_FOLDER'])
+    destination_file = os.path.join(destination_folder, filename)
+    # Check if the uploads directory exists, and create it if it does not
+    if not os.path.exists(destination_folder):
+        os.makedirs(destination_folder)
+    return destination_file
 """
     Save file directly with werkzeug FileStorage.save() Could be improved.
     Documentation says: 
